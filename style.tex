@@ -1,0 +1,247 @@
+% beamer style sheet
+% DT
+
+% die wichtigsten Farben der Präsentationsobjekt wurde personalisiert
+% das colortheme setzt jedoch alle nicht personalisierten Farben
+% seagull ist sehr dezent
+% könnte sein, dass der Wechsel auf ein anderes Colortheme Überraschungen mit sich bringen
+\usecolortheme{seagull}
+\useoutertheme[]{miniframes} % ermöglicht die kleine inhaltsangabe im footer
+\useinnertheme[]{rectangles} % setzt u.a. die Rechtecke der Aufzählungen
+
+%\input{style/progressbar.tex}
+\input{lean_template/minimalistic_progressbar.tex}
+
+\title[\runtitle]{\runtitle}
+\subtitle{\runsubtitle}
+\author{\runauthor}
+\date{\rundate}
+\institute{\runinstitute}
+\titlegraphic{
+    %\pgfuseimage{titlegraphic}
+}
+
+
+\pgfdeclareimage[height=2cm]{titlegraphic}{style/title.jpg}
+\pgfdeclareimage[height=1cm]{logo}{style/logo.png}
+
+% color palette ===============================================================
+\definecolor{midnightblue}{HTML}{172638}
+\definecolor{brown}{HTML}{D9A176}
+\definecolor{lightdtblue}{HTML}{dae3f3}
+\definecolor{black}{HTML}{000000}
+\definecolor{white}{HTML}{FFFFFF}
+\definecolor{lightgrey}{HTML}{aaaaaa}
+\definecolor{darkgrey}{HTML}{666666}
+% pseudo variablen um farben einfach auszutauschen
+\newcommand{\maincol}{midnightblue} % Title und optische Highlights
+\newcommand{\accmaincol}{brown} % leichte Akzentfarbe zum DT Blau
+\newcommand{\seccol}{white} % weißer Hintergrund, für Titel
+\newcommand{\accseccol}{midnightblue} % alle titel mit weißem Grund
+\newcommand{\fontcol}{midnightblue} % alle Text (mit Ausnahmen)
+\newcommand{\footlinefontcol}{midnightblue} % darkgrey taken from footline separator(Bild4)img
+\newcommand{\progressbarcol}{brown} % lightgrey taken from footline separator(Bild4) img
+% pseudo variablen
+% color palette ===============================================================
+
+% disables navigation symbols =================================================
+\setbeamertemplate{navigation symbols}{}
+% disables navigation symbols =================================================
+
+% settings for title page =====================================================
+\setbeamercolor{title}{bg=\maincol, fg=\accmaincol}
+\setbeamerfont{title}{size=\Large, series=\bfseries}
+\setbeamercolor{titlegraphic}{bg=\seccol, fg=\fontcol}
+\setbeamerfont{titlegraphic}{size=\Large, series=\bfseries}
+\setbeamercolor{subtitle}{bg=\accseccol, fg=\maincol}
+\setbeamerfont{subtitle}{size=\scriptsize, series=\bfseries}
+\setbeamercolor{author}{bg=\seccol, fg=\fontcol}
+\setbeamerfont{author}{size=\small, series=\bfseries}
+\setbeamercolor{institute}{bg=\seccol, fg=\fontcol}
+\setbeamerfont{institute}{size=\small}
+
+% description of the title page
+\setbeamertemplate{title page}{
+    \begin{columns}[T]% kleiner Hack, um keine margins zu haben
+        \begin{column}{\paperwidth}
+            \vskip0.5cm
+            \begin{beamercolorbox}[ht=1.5cm,right,rightskip=10pt]{titlegraphic}
+                \usebeamercolor[fg]{titlegraphic}
+                \inserttitlegraphic
+            \end{beamercolorbox}
+            \vskip0.5cm
+            \begin{beamercolorbox}[right, rightskip=10pt]{author}
+                \usebeamerfont{author}
+                \insertauthor\par
+            \end{beamercolorbox}
+            \vskip0.1cm
+            \begin{beamercolorbox}[right, rightskip=10pt]{institute}
+                \usebeamerfont{institute}
+                \insertinstitute\par
+            \end{beamercolorbox}
+            \vskip0.5cm
+            \begin{beamercolorbox}[ht=2.3cm,right, rightskip=10pt]{title}
+                \usebeamerfont{title}
+                \inserttitle\par
+                \vskip0.3cm
+                %\includegraphics[width=\paperwidth,height=1cm,page=1]{style/title.jpg}
+            \end{beamercolorbox}
+            \begin{beamercolorbox}[right, rightskip=10pt]{date}
+                \usebeamerfont{subtitle}
+                \insertsubtitle\par
+            \end{beamercolorbox}
+            \vskip0.3cm
+            \begin{beamercolorbox}[right, rightskip=10pt]{date}
+                \usebeamerfont{subtitle}
+                \insertdate\par
+            \end{beamercolorbox}
+        \end{column}
+    \end{columns}
+}
+% settings for title page =====================================================
+
+% settings for toc =============================================================
+\setbeamercolor{section in toc}{bg=\seccol, fg=\fontcol}
+\setbeamertemplate{section in toc}{
+    \begin{beamercolorbox}{section in toc}
+        \fcolorbox{\maincol}{\maincol}{
+            \parbox[c][0.2cm][c]{0.2cm}{\color{\seccol}\bfseries\inserttocsectionnumber}
+        }
+        \fcolorbox{\seccol}{\seccol}{
+            \parbox[c][0.2cm][c]{7.1cm}{\inserttocsection}
+        }
+    \end{beamercolorbox}
+}
+
+\setbeamercolor{subsection in toc}{bg=\seccol, fg=\fontcol}
+\setbeamertemplate{subsection in toc}{
+    \begin{beamercolorbox}{section in toc}
+        %\hskip0.8cm
+        \fcolorbox{\maincol}{\maincol}{
+            \parbox[c][0.2cm][c]{0.5cm}{\color{\seccol}\inserttocsectionnumber.\inserttocsubsectionnumber}
+        }
+        \fcolorbox{\seccol}{\seccol}{
+            \parbox[c][0.2cm][c]{6cm}{\inserttocsubsection}
+        }
+    \end{beamercolorbox}
+}
+% setting for toc =============================================================
+
+% headline setting ============================================================
+\setbeamerfont{section in head/foot}{size=\normalsize, series=\bfseries}
+\setbeamercolor{section in head/foot}{bg=\seccol}
+\setbeamerfont{subsection in head/foot}{size=\normalsize, series=\bfseries}
+\setbeamercolor{subsection in head/foot}{bg=\seccol, fg=\maincol}
+
+\setbeamertemplate{headline}{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=0.3cm,center]{}
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[wd=\paperwidth,right]{section in head/foot}
+        \begin{minipage}[l][1cm][c]{0.75\textwidth}
+            \makebox[0.8\textwidth][l]{
+                \color{\maincol}\usebeamerfont{subsection in head/foot}\insertsubsection\par
+            }
+        \end{minipage}
+        % Logo
+        \begin{minipage}[c][1cm][c]{0.2\textwidth}
+            \textcolor{\seccol}{titlegraphic}
+            %\pgfuseimage{logo}
+        \end{minipage}
+        % Logo 
+    \end{beamercolorbox}
+}
+% headline setting ============================================================
+
+% footline setting ============================================================
+\setbeamercolor{date}{bg=\seccol, fg=\fontcol}
+\setbeamerfont{date}{size=\tiny}
+\setbeamercolor{footline}{bg=\seccol, fg=\fontcol}
+\setbeamerfont{footline}{size=\tiny}
+
+\setbeamertemplate{footline}{%
+    \begin{beamercolorbox}[wd=\paperwidth,left]{}
+        \progressbar@progressbar[\paperwidth][1pt](\progressbarcol,\footlinefontcol)
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[wd=\paperwidth,ht=1ex,center]{}
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[wd=\paperwidth,ht=3ex,dp=0.5ex,center]{}
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=2ex,wd=\paperwidth,ht=1ex,center]{}
+        \begin{beamercolorbox}[wd=0.2\paperwidth,dp=1pt,left]{}
+            \insertdate
+        \end{beamercolorbox}
+        %\hskip1cm
+        \begin{beamercolorbox}[wd=0.4\paperwidth,dp=1pt,center]{}
+            \insertsection
+        \end{beamercolorbox}
+        %\hskip1cm
+        \begin{beamercolorbox}[wd=0.2\paperwidth,dp=1pt,right]{}
+            \insertframenumber
+        \end{beamercolorbox}
+    \end{beamercolorbox}
+    }%
+% footline setting ============================================================
+
+
+% frametitle setting ==========================================================
+\setbeamercolor{frametitle}{bg=\accseccol, fg=\maincol}
+\setbeamerfont{frametitle}{series=\bfseries,size=\normalsize}
+\setbeamertemplate{frametitle}{%
+    \begin{beamercolorbox}[wd=\textwidth,ht=2.25ex,dp=1ex,left]{}
+        \usebeamerfont{frametitle}\insertframetitle
+    \end{beamercolorbox}
+}%
+% frametitle setting ==========================================================
+
+
+% itemize and enumerate settings ==============================================
+\setbeamercolor{item}{fg=\maincol} % changes color of enumerate items
+\setbeamercolor{subitem}{bg=\maincol}
+\setbeamercolor{subsubitem}{bg=\maincol}
+\setbeamercolor{itemize item}{fg=\maincol}
+\setbeamercolor{itemize subitem}{fg=\maincol}
+\setbeamercolor{itemize subsubitem}{fg=\maincol}
+
+\setbeamercolor{enumerate item}{fg=\maincol}
+\setbeamercolor{enumerate subitem}{fg=\maincol}
+\setbeamercolor{enumerate subsubitem}{fg=\maincol}
+%
+\setbeamercolor{item projected}{bg=\maincol, fg=\seccol}
+\setbeamercolor{subitem projected}{bg=\maincol, fg=\seccol}
+\setbeamercolor{subsubitem projected}{bg=\maincol, fg=\seccol}
+
+\setbeamercolor{block title}{bg=\maincol, fg=\seccol}
+\setbeamercolor{block body}{bg=\seccol}
+% itemize and enumerate settings ==============================================
+
+% settings for section page ===================================================
+\setbeamercolor{section page}{bg=\seccol, fg=\maincol}
+\setbeamerfont{section page}{size=\Large, series=\bfseries}
+
+\setbeamertemplate{section page}{
+    \vskip4cm
+    \centering
+    \begin{columns}[T]% kleiner Hack, um keine margins zu haben
+        \begin{column}{\paperwidth}
+            \begin{beamercolorbox}[sep=5pt,right, rightskip=50pt]{section page}
+                \usebeamerfont{title}\insertsectionhead\par%
+            \end{beamercolorbox}
+            \progressbar@progressbar[\paperwidth][1pt](\progressbarcol,\footlinefontcol)
+        \end{column}
+    \end{columns}
+}
+% settings for section page ===================================================
+
+% settings for note page ======================================================
+%\setbeamercolor{note page}{bg=white}
+%\setbeamertemplate{note page}{<whatever you want> \insertnote}
+% settings for note page ======================================================
+
+% settings for handout ========================================================
+\mode<handout>{%
+    %\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+    \pgfpagesuselayout{2 on 1}[a4paper]
+    \setbeameroption{show notes}
+}
+% settings for handout ========================================================
+

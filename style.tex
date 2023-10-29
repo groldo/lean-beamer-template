@@ -12,16 +12,6 @@
 %\input{style/progressbar.tex}
 \input{lean-beamer-template/minimalistic_progressbar.tex}
 
-\title[\runtitle]{\runtitle}
-\subtitle{\runsubtitle}
-\author{\runauthor}
-\date{\rundate}
-\institute{\runinstitute}
-\titlegraphic{
-    %\pgfuseimage{titlegraphic}
-}
-
-
 \pgfdeclareimage[height=2cm]{titlegraphic}{style/title.jpg}
 \pgfdeclareimage[height=1cm]{logo}{style/logo.png}
 
@@ -91,10 +81,10 @@
                 \insertsubtitle\par
             \end{beamercolorbox}
             \vskip0.3cm
-            \begin{beamercolorbox}[right, rightskip=10pt]{date}
-                \usebeamerfont{subtitle}
-                \insertdate\par
-            \end{beamercolorbox}
+            %\begin{beamercolorbox}[right, rightskip=10pt]{date}
+            %    \usebeamerfont{subtitle}
+            %    \insertdate\par
+            %\end{beamercolorbox}
         \end{column}
     \end{columns}
 }
